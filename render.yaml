@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: nexus-lead-gen
+    runtime: python
+    region: virginia
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: REDDIT_CLIENT_ID
+        sync: false
+      - key: REDDIT_CLIENT_SECRET
+        sync: false
+      - key: REDDIT_USER_AGENT
+        value: script:nexus-os:v1.0
+      - key: N8N_WEBHOOK_URL
+        sync: false
+      - key: APPS_SCRIPT_URL
+        sync: false
